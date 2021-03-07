@@ -1,8 +1,8 @@
 import React from 'react';
 import Carousel from 'react-material-ui-carousel'
-import { Paper, Button } from '@material-ui/core'
+import { Paper, Button, ThemeProvider, createMuiTheme } from '@material-ui/core'
 import './App.css';
-import gothomBold from './assets/fonts/GothamBold.ttf';
+import gothamBold from './assets/fonts/GothamBold.ttf';
 
 function Example(props)
 {
@@ -14,14 +14,13 @@ function Example(props)
           image: "drip-irrigation-pipe-making-machine-1510658903-3451778.png"
         },
         {
-          headingFirstLine: "Random Name",
-          headingSecondLine: "#2",
-          description: "Hello World!",
-          image: ""
+          headingFirstLine: "Save Today 1",
+          headingSecondLine:"Rejoice Tomorrow 1",
+          description: "Be more intelligent in Saving Water and Make wiser use of irrigation System",
+          image: "industrial-estate-refinery-factory-oil-storage-tank-petrochemical-plant-area-with-beautify-sky-sunset.jpg"
         }
     ];
 
-    console.log(gothomBold);
     return (
         <Carousel className="carouselContainer">
             {
@@ -33,6 +32,30 @@ function Example(props)
 
 function Item(props)
 {
+  console.log(`${process.env.PUBLIC_URL}${gothamBold}`);
+  const gothamBoldFont = {
+    fontFamily:'gotham',
+    fontStyle: 'normal',
+    fontDisplay: 'swap',
+    fontWeight: 400,
+    src: `
+      local('gotham'),
+      url(${process.env.PUBLIC_URL}${gothamBold}) format('ttf')
+    `
+  };
+  console.log(gothamBoldFont);
+  const theme = createMuiTheme({
+    typography: {
+      fontFamily: 'gotham',
+    },
+    overrides: {
+      MuiCssBaseline: {
+        '@global': {
+          '@font-face': [gothamBoldFont],
+        },
+      },
+    },
+  });
   const styles = {
     paperContainer: {
         backgroundImage: `url(${process.env.PUBLIC_URL}assets/images/${props.item.image})`,
@@ -44,19 +67,22 @@ function Item(props)
         backgroundPosition: "right bottom",
     },
     header: {
-      fontFamily: gothomBold
+      fontFamily: 'gotham',
+      color: 'green'
     }
 };
     return (
+      <ThemeProvider theme={theme}>
         <Paper style={styles.paperContainer}>
             <h2 style={styles.header}>{props.item.headingFirstLine}</h2>
             <h2 style={styles.header}>{props.item.headingSecondLine}</h2>
             <p>{props.item.description}</p>
 
-            <Button className="CheckButton">
+            <Button className="check-button">
                 Check it out!
             </Button>
         </Paper>
+        </ThemeProvider>
     )
 }
 
