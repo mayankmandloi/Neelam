@@ -1,7 +1,37 @@
+.header {
+  background-color: #AA8A58;
+  padding-top: 10px;
+  padding-bottom: 2px;
+}
+.header span, .headerColor {
+  color: #ead3bd;
+}
+.logo {
+  width: 75%;
+}
+.menu-item {
+  padding-left: 3px;
+}
 
+.menu-item::after{
+  content: '';
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  -moz-border-radius: 7.5px;
+  -webkit-border-radius: 7.5px;
+  border-radius: 7.5px;
+  margin-bottom: 3px;
+  margin-left: 5px;
+  background-color: #69b6d5;
+}
 
+.menu-item:last-child::after{
+  display: none;
+}
 .carouselContainer {
-  height: 50vh;
+  height: 55vh;
+  width: 100%;
 }
 
 @font-face {
@@ -11,4 +41,158 @@
 
 .check-button {
   border: 1px solid gray;
+}
+.welome-header, .usp-header, .client-header {
+  text-align: center;
+}
+.welome-header::after, .usp-header::after, .client-header::after{
+  content: '';
+  display: inline-block;
+  width: 15%;
+  height: 1px;
+  margin-bottom: 8px;
+  margin-left: 2%;
+  background-color: #000000;
+}
+.welome-header::before, .usp-header::before, .client-header::before {
+  content: '';
+  display: inline-block;
+  width: 15%;
+  height: 1px;
+  margin-bottom: 8px;
+  margin-right: 2%;
+  background-color: #000000;
+}
+.welcome-text {
+  text-align: center;
+}
+
+/**
+ * Circle Styles
+ */
+
+.circle {
+  position: relative;
+  display: block;
+  margin: 2em 0;
+  background-color: transparent;
+  color: #222;
+  text-align: center;
+}
+
+.circle:after {
+  display: block;
+  padding-bottom: 100%;
+  width: 100%;
+  height: 0;
+  border-radius: 50%;
+  background-color: #ddd;
+  content: "";
+}
+
+.our-speciality, .our-company, .choose-us {
+  color: #ffffff;
+}
+
+.our-speciality:after {
+  background-color: #243f64;
+}
+
+.our-company:after {
+  background-color: #5eba52;
+}
+
+.choose-us:after {
+  background-color: #b0894e;
+}
+
+.circle__inner {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.circle__wrapper {
+  display: table;
+  width: 100%;
+  height: 100%;
+}
+
+.circle__content {
+  display: table-cell;
+  padding: 1em;
+  vertical-align: middle;
+}
+
+.usp {
+  background-color: #243f64;
+  padding-bottom: 20px;
+}
+
+.usp h1 {
+  padding-top: 20px;
+  text-align: center;
+  margin: 0;
+  color: #b28751;
+}
+
+.usp h1.number {
+  padding-top: 0;
+  text-align: center;
+  margin: 0;
+  color: #fff;
+  font-size: 4em;
+}
+
+.usp-header, .client-header {
+  color: #ffffff;
+  padding-top: 10px;
+}
+
+.usp-header::before, .usp-header::after, .client-header::before, .client-header::after {
+  background-color: #ffffff;
+}
+
+.usp-list {
+  color: #ffffff;
+  padding-bottom: 5vh;
+}
+.usp-list li {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.client {
+  background-color: #b0894e;
+}
+
+
+@media (min-width: 480px) {
+  .circle__content {
+    font-size: 2em;
+  }
+}
+
+@media (min-width: 768px) {
+  .circle__content {
+    font-size: 2em;
+  }
+}
+
+
+@media only screen and (max-width: 600px) {
+  .logo {
+    width: 100%;
+  }
+  .welome-header::after, .usp-header::after{
+    content: '';
+    display: none;
+  }
+  .welome-header::before, .usp-header::before{
+    content: '';
+    display: none;
+  }
 }
