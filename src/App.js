@@ -1,12 +1,11 @@
-import React from "react";
-import Carousel from "react-material-ui-carousel";
+import React, { useState } from "react";
 import {
   Grid,
   Paper,
-  Button,
-  ThemeProvider,
-  createMuiTheme,
   Box,
+  List,
+  ListItem,
+  ListItemText,
 } from "@material-ui/core";
 import FacebookIcon from "@material-ui/icons/Facebook";
 import InstagramIcon from "@material-ui/icons/Instagram";
@@ -14,9 +13,15 @@ import YouTubeIcon from "@material-ui/icons/YouTube";
 import TwitterIcon from "@material-ui/icons/Twitter";
 import LinkedInIcon from "@material-ui/icons/LinkedIn";
 import "./App.css";
-import gothamBold from "./assets/fonts/GothamBold.ttf";
 import AppBarCollapse from "./AppBar/AppBarCollapse";
 import { ClientCarousel } from "./clientCarousel";
+import BackToTop from "./ScrollToTop";
+import { BrowserRouter, Switch, Route, Link} from "react-router-dom";
+import { CarouselTop } from "./Carousel";
+import { Description } from "./Description";
+import { USP } from "./USP";
+import { Client } from "./Client";
+import { AboutUs } from "./Pages/AboutUs";
 
 function Example(props) {
   const items = [
@@ -46,30 +51,32 @@ function Example(props) {
   ];
 
   const menuList = [
-    <span className="menu-item">HOME</span>,
-    <span className="menu-item">ABOUT US</span>,
-    <span className="menu-item">PRODUCTS</span>,
-    <span className="menu-item">GALLERY</span>,
-    <span className="menu-item">CONTACT US</span>,
+    <Link className="menu-item" to='/'>HOME</Link>,
+    <Link className="menu-item" to="/about">ABOUT US</Link>,
+    <Link className="menu-item" to="/products">PRODUCTS</Link>,
+    <Link className="menu-item" to="/gallery">GALLERY</Link>,
+    <Link className="menu-item" to="/contact-us">CONTACT US</Link>,
   ];
 
+  function ListItemLink(props) {
+    return <ListItem style={{margin:0, padding:0}} button component="a" {...props} />;
+  }
+
   const styles = {
-    paperContainer: {
-      background: `url(${process.env.PUBLIC_URL}assets/images/oil-gas-refinery-plant-petrochemical-industry-sky-sunset-factory-with-evening-manufacturing-petrochemical-industrial.jpg) rgba(20, 20, 20, 0.3)`,
-      backgroundSize: "100%",
-      backgroundPosition: "center",
-      width: "100%",
-      "background-blend-mode": "multiply",
+    blueBackground: {
+      background: "#243f64",
+      color: "white",
     },
   };
 
   return (
     <Grid container direction="row" justify="center" alignItems="center">
+      <BrowserRouter>
       {/*------------------------------------ Header start ----------------------------------------*/}
       <Grid container item xs={12} className="header" justify="center">
         <Grid md={2} xs={0}></Grid>
         <Grid item md={5} xs={8} pt="10px">
-          <span>
+          <span id="back-to-top-anchor">
             Call us : +91 98260 62225, 95848 62225 | Toll Free : 1800 8896 521
           </span>
         </Grid>
@@ -103,236 +110,96 @@ function Example(props) {
       </Grid>
 
       {/*------------------------------------  Logo and Menu  End  ----------------------------------------*/}
+      <Switch>
+          <Route path="/about">
+            <AboutUs/>
+          </Route>
+          <Route path="/products">
+            <h1>Products</h1>
+          </Route>
+          <Route path="/gallery">
+            <h1>Gallery</h1>
+          </Route>
+          <Route path="/contact-us">
+            <h1>Contact Us</h1>
+          </Route>
+          <Route path="/">
+            <CarouselTop items={items}></CarouselTop>
+            <Description></Description>
+            <USP></USP>
+            <Client></Client>
+          </Route>
+        </Switch>
+      
 
-      {/*------------------------------------ Carousel start ----------------------------------------*/}
-      <Grid container item xs={12}>
-        <Carousel
-          className="carouselContainer"
-          activeIndicatorIconButtonProps={{
-            style: {
-              color: "green",
-            },
-          }}
-        >
-          {items.map((item, i) => (
-            <Item key={i} item={item} />
-          ))}
-        </Carousel>
-      </Grid>
-      {/*------------------------------------ Carousel End ----------------------------------------*/}
-
-      {/*------------------------------------ Description start ----------------------------------------*/}
+      {/*------------------------------------ Footer Start ----------------------------------------*/}
       <Grid
-        item
-        xs={12}
-        md={10}
-        justify="center"
-        alignContent="center"
-        alignItems="center"
+      container
+      item
+      xs={12}
+      style={styles.blueBackground}
+      justify='center'
+      spacing='6'
       >
-        <h1 className="welome-header">Welcome to Nilam Industries</h1>
-      </Grid>
-      <Grid xs={10} sm={8} md={6}>
-        <p className="welcome-text">
-          Nilam Industries is one of the best organizations you will find in the
-          Madhya Pradesh Region for handling drip irrigation system. We are the
-          serving as the manufacturer of all the drip irrigation best quality
-          equipment.
-        </p>
-      </Grid>
-
-      <Grid container item xs={10} sm={8} spacing={7}>
-        <Grid item xs={10} sm={8} md={4}>
-          <div class="circle our-speciality">
-            <div class="circle__inner">
-              <div class="circle__wrapper">
-                <div class="circle__content">Our Speciality</div>
-              </div>
-            </div>
-          </div>
-          <p style={{ textAlign: "center" }}>
-            Our R&D centre is always on the move. A team of five Senior
-            Engineers and Fourteen seasoned technicians are 24x7 putting its
-            efforts to innovate and upgrade the technology to get the maximum
-            output with a quality at its best. The market records have proven
-            that we are at top position in India, if you talk about the number
-            of machines made and supplied by a single production house under one
-            roof. In true sense our products are indigenous.
-          </p>
-        </Grid>
-        <Grid item xs={10} sm={8} md={4}>
-          <div class="circle our-company">
-            <div class="circle__inner">
-              <div class="circle__wrapper">
-                <div class="circle__content">Our Company</div>
-              </div>
-            </div>
-          </div>
-          <p style={{ textAlign: "center" }}>
-            Nilam Industries in committed to provide a high quality after sales
-            services to meet the customer satisfaction. A sense of true
-            commitment coupled with professional zeal drives our technicians to
-            reach an ecstasy in putting their excellence in the machine. Strong
-            support and prompt service are the significant goals as Nilam
-            Industries.
-          </p>
-        </Grid>
-        <Grid item xs={10} sm={8} md={4}>
-          <div class="circle choose-us">
-            <div class="circle__inner">
-              <div class="circle__wrapper">
-                <div class="circle__content">Why Choose Us?</div>
-              </div>
-            </div>
-          </div>
-          <p style={{ textAlign: "center" }}>
-            There are countless reasons to choose from our range of machines
-            across the country.
-          </p>
-        </Grid>
-      </Grid>
-      {/*------------------------------------ Description End ----------------------------------------*/}
-
-      {/*------------------------------------ USP Start ----------------------------------------*/}
-      <Grid container item xs={12} className="usp" justify="center">
-        <Grid item xs={12} md={3}>
-          <h1>WE BUILD DRIP IRRIGATION MACHINE</h1>
-        </Grid>
-        <Grid item xs={12} md={3}>
-          <h1>PRODUCTS</h1>
-          <h1 className="number">+100</h1>
-        </Grid>
-        <Grid item xs={12} md={3}>
-          <h1>CLIENTS</h1>
-          <h1 className="number">+100</h1>
-        </Grid>
-      </Grid>
-      <Grid
-        container
-        item
-        xs={12}
-        justify="center"
-        alignContent="center"
-        alignItems="center"
-      >
-        <Paper style={styles.paperContainer}>
-          <Grid
-            item
-            xs={12}
-            justify="center"
-            alignContent="center"
-            alignItems="center"
-          >
-            <h1 className="usp-header"> USP’s of Nilam Industries</h1>
+        <Grid container item xs={12} sm={10} md={3}>
+          <img
+            className="logo"
+            src={`${process.env.PUBLIC_URL}assets/images/Nilam Industries Logo-01.png`}
+            alt="Nilam Industries"
+          />
+          <p>Nilam Industries is one of the best organizations you will find in the Madhya Pradesh Region for handling drip irrigation system. We are the serving as the manufacturer of all the drip irrigation best quality Machines.</p>
           </Grid>
-          <Grid
-            container
-            item
-            xs={12}
-            justify="center"
-            alignContent="center"
-            alignItems="center"
-          >
-            <ul className="usp-list">
-              <li>Increase in yield at a high rate of more than 70%</li>
-              <li>
-                Saves water at a very fast pace and more land can be irrigated.
-              </li>
-              <li>High return on investments</li>
-              <li>Proven Technology</li>
-              <li>Suitable designs and cost effective plans</li>
-            </ul>
+        <Grid container item xs={12} sm={10} md={3} justify={'center'}>
+          <Grid xs={12} justify={'center'}><h3 style={{textAlign:"center", marginBottom: 0}}>Quick Links</h3></Grid>
+          <Grid xs={12} justify={'center'}>
+          <List component="nav" aria-label="quick links" disableGutters  style={{"padding-top":0,"paddingBottom":0, margin:0}}>
+        <ListItemLink href="/">
+          <ListItemText style={{textAlign:"center"}} primary="Home" />
+        </ListItemLink>
+        <ListItemLink href="/about">
+          <ListItemText style={{textAlign:"center", "padding-top":0,"paddingBottom":0}} primary="About Us" />
+        </ListItemLink><ListItemLink href="/products">
+          <ListItemText style={{textAlign:"center", "padding-top":0,"paddingBottom":0}} primary="Products" />
+        </ListItemLink><ListItemLink href="gallery">
+          <ListItemText style={{textAlign:"center", "padding-top":0,"paddingBottom":0}} primary="Gallery" />
+        </ListItemLink><ListItemLink href="contact-us">
+          <ListItemText style={{textAlign:"center", "padding-top":0,"paddingBottom":0}} primary="Contact Us" />
+        </ListItemLink>
+      </List>
+          
           </Grid>
-        </Paper>
-      </Grid>
-      {/*------------------------------------ USP End ----------------------------------------*/}
-      {/*------------------------------------ Client Start ----------------------------------------*/}
-      <Grid
-        container
-        item
-        xs={12}
-        className="client"
-        justify="center"
-        alignContent="center"
-        alignItems="center"
-      >
-        <Grid
-          item
-          xs={12}
-          justify="center"
-          alignContent="center"
-          alignItems="center"
-        >
-          <h1 className="client-header"> OUR CLIENTS </h1>
-        </Grid>
-        <Grid
-          item
-          xs={12}
-          sm={10}
-          md={8}
-          justify="center"
-          alignContent="center"
-          alignItems="center"
-        >
-          <ClientCarousel />
+          </Grid>
+        <Grid container item xs={12} sm={10} md={3}>
+          <Grid xs={12}>
+            <h3 style={{textAlign:"center", marginBottom: 0}}>Contact Us</h3>
+          </Grid>
+          <Grid xs={12} style={{textAlign:"justify", margin: 0, padding: 0}}>
+            <p>Plot No. A-1, Near Balaji Toll Kanta, Nagziri, Industrial Area, Dewas Road, Ujjain (M.P.) INDIA - 456010</p>
+          </Grid>
+          <Grid xs={12}>
+            <a className="phone" href="tel:+919826062225">+91 98260 62225</a>, <a className="phone" href="tel:+919584862225">95848 62225</a>
+          </Grid>
+          <Grid xs={12}>
+            <span>Toll Free No.: <a className="phone" href="tel:1800 8896 521">1800 8896 521</a></span>
+          </Grid>
+          <Grid>
+            <a className="phone" href="mailto:nilamindustries@gmail.com">nilamindustries@gmail.com</a>
+          </Grid>
+          <Grid>
+            <a className="phone" href="http://www.nilamindustries.com/">http://www.nilamindustries.com/</a>
+          </Grid>
         </Grid>
       </Grid>
-      {/*------------------------------------ Client End ----------------------------------------*/}
+      <BackToTop></BackToTop>
+      {/*------------------------------------ Footer End ----------------------------------------*/}
+      </BrowserRouter>
     </Grid>
   );
+
+
+
 }
 
-function Item(props) {
-  const gothamBoldFont = {
-    fontFamily: "gotham",
-    fontStyle: "normal",
-    fontDisplay: "swap",
-    fontWeight: 400,
-    src: `
-      local('gotham'),
-      url(${process.env.PUBLIC_URL}${gothamBold}) format('ttf')
-    `,
-  };
-  console.log(gothamBoldFont);
-  const theme = createMuiTheme({
-    typography: {
-      fontFamily: "gotham",
-    },
-    overrides: {
-      MuiCssBaseline: {
-        "@global": {
-          "@font-face": [gothamBoldFont],
-        },
-      },
-    },
-  });
-  const styles = {
-    paperContainer: {
-      backgroundImage: `url(${process.env.PUBLIC_URL}assets/images/${props.item.image})`,
-      backgroundSize: "100% 100%",
-      overflow: "hidden",
-      height: "45vh",
-      paddingLeft: "15%",
-      paddingTop: "5vh",
-      backgroundPosition: "right bottom",
-    },
-    header: {
-      fontFamily: "gotham",
-      color: "green",
-    },
-  };
-  return (
-    <ThemeProvider theme={theme}>
-      <Paper style={styles.paperContainer}>
-        <h2 style={styles.header}>{props.item.headingFirstLine}</h2>
-        <h2 style={styles.header}>{props.item.headingSecondLine}</h2>
-        <p>{props.item.description}</p>
-
-        <Button className="check-button">Check it out!</Button>
-      </Paper>
-    </ThemeProvider>
-  );
-}
 
 const App = Example;
 export default App;
