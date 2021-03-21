@@ -1,5 +1,19 @@
 import { AboutUsBanner } from "./AboutUsBanner";
+import { DescriptionAndImage } from "./DescriptionAndImage";
+import { Grid, makeStyles } from "@material-ui/core";
 
+
+const useStyle = makeStyles(() => ({
+    greenBackground: {
+        backgroundColor: "green",
+        paddingRight: "3%",
+        color: "white"
+    },
+    wrapper: {
+        paddingBottom: "10px",
+        textAlign: "justify"
+    }
+}));
 
 export const AboutUs = () => {
 const data = {
@@ -68,11 +82,27 @@ const data = {
         ]
     }
 };
+const classes= useStyle();
 return (
 <>
-<AboutUsBanner item={data.banner}>
-
-</AboutUsBanner>
+<AboutUsBanner item={data.banner}/>
+<DescriptionAndImage item={data.about}/>
+<Grid container item xs={12} className={classes.wrapper}>
+    <Grid container item xs={12} md={6} className={classes.greenBackground}>
+        <Grid item xs= {0} md={4}></Grid>
+        <Grid item xs = {12} md={8}>
+            <h2>{data.vision.heading}</h2>
+            <p>{data.vision.text}</p>
+        </Grid>
+    </Grid>
+    <Grid container item xs={12} md={6}>
+        <Grid xs={0} md={1}></Grid>
+        <Grid item xs = {12} md={8}>
+            <h2>{data.mission.heading}</h2>
+            <p>{data.mission.text}</p>
+        </Grid>
+    </Grid>
+</Grid>
 </>
 );
 }
