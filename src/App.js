@@ -21,6 +21,7 @@ import { CarouselTop } from "./Carousel";
 import { Description } from "./Description";
 import { USP } from "./USP";
 import { Client } from "./Client";
+import { AboutUs } from "./Pages/AboutUs";
 
 function Example(props) {
   const items = [
@@ -111,7 +112,7 @@ function Example(props) {
       {/*------------------------------------  Logo and Menu  End  ----------------------------------------*/}
       <Switch>
           <Route path="/about">
-            <h1>About</h1>
+            <AboutUs/>
           </Route>
           <Route path="/products">
             <h1>Products</h1>
