@@ -19,8 +19,8 @@ export const TeamCard = () => {
 export const Teams = () => {
   return (
     <>
-      <Grid xs={1}></Grid>
-      <Grid container item xs={10}>
+      <Grid xs={2}></Grid>
+      <Grid container item xs={8}>
         <Grid item xs={6} md={3}>
           <TeamCard />
         </Grid>
