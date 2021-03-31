@@ -22,6 +22,7 @@ import { Description } from "./Description";
 import { USP } from "./USP";
 import { Client } from "./Client";
 import { AboutUs } from "./Pages/AboutUs";
+import { OurProducts } from "./Pages/OurProducts";
 
 function Example(props) {
   const items = [
@@ -115,7 +116,7 @@ function Example(props) {
             <AboutUs/>
           </Route>
           <Route path="/products">
-            <h1>Products</h1>
+            <OurProducts/>
           </Route>
           <Route path="/gallery">
             <h1>Gallery</h1>
