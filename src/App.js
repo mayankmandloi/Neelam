@@ -19,10 +19,11 @@ import BackToTop from "./ScrollToTop";
 import { BrowserRouter, Switch, Route, Link} from "react-router-dom";
 import { CarouselTop } from "./Carousel";
 import { Description } from "./Description";
-import { USP } from "./USP";
+import { USP } from "./Pages/USP";
 import { Client } from "./Client";
 import { AboutUs } from "./Pages/AboutUs";
 import { OurProducts } from "./Pages/OurProducts";
+import { GalleryPage } from "./Pages/GalleryPage";
 
 function Example(props) {
   const items = [
@@ -119,7 +120,7 @@ function Example(props) {
             <OurProducts/>
           </Route>
           <Route path="/gallery">
-            <h1>Gallery</h1>
+            <GalleryPage/>
           </Route>
           <Route path="/contact-us">
             <h1>Contact Us</h1>
