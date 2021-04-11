@@ -8,6 +8,7 @@
 }
 .logo {
   width: 75%;
+  max-width: 150px;
 }
 .menu-item {
   padding-left: 3px;
@@ -134,4 +135,7 @@
   position: relative;
   top: -72px;
   margin-bottom: -48px;
+}
+.icon {
+  width: 15px
 }

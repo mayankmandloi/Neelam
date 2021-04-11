@@ -24,6 +24,7 @@ import { Client } from "./Client";
 import { AboutUs } from "./Pages/AboutUs";
 import { OurProducts } from "./Pages/OurProducts";
 import { GalleryPage } from "./Pages/GalleryPage";
+import { ContactUs } from "./Pages/Contact";
 
 function Example(props) {
   const items = [
@@ -123,7 +124,7 @@ function Example(props) {
             <GalleryPage/>
           </Route>
           <Route path="/contact-us">
-            <h1>Contact Us</h1>
+            <ContactUs/>
           </Route>
           <Route path="/">
             <CarouselTop items={items}></CarouselTop>
@@ -146,7 +147,7 @@ function Example(props) {
         <Grid container item xs={12} sm={10} md={3}>
           <img
             className="logo"
-            src={`${process.env.PUBLIC_URL}assets/images/Nilam Industries Logo-01.png`}
+            src={`${process.env.PUBLIC_URL}assets/images/Nilam Industries Logo-white.png`}
             alt="Nilam Industries"
           />
           <p>Nilam Industries is one of the best organizations you will find in the Madhya Pradesh Region for handling drip irrigation system. We are the serving as the manufacturer of all the drip irrigation best quality Machines.</p>
@@ -179,13 +180,13 @@ function Example(props) {
             <p>Plot No. A-1, Near Balaji Toll Kanta, Nagziri, Industrial Area, Dewas Road, Ujjain (M.P.) INDIA - 456010</p>
           </Grid>
           <Grid xs={12}>
-            <a className="phone" href="tel:+919826062225">+91 98260 62225</a>, <a className="phone" href="tel:+919584862225">95848 62225</a>
+            <img className="icon" src={`${process.env.PUBLIC_URL}assets/images/phone-icon.png`}/> <a className="phone" href="tel:+919826062225">+91 98260 62225</a>, <a className="phone" href="tel:+919584862225">95848 62225</a>
           </Grid>
           <Grid xs={12}>
-            <span>Toll Free No.: <a className="phone" href="tel:1800 8896 521">1800 8896 521</a></span>
+          <img className="icon" src={`${process.env.PUBLIC_URL}assets/images/phone-icon.png`}/> <span>Toll Free No.: <a className="phone" href="tel:1800 8896 521">1800 8896 521</a></span>
           </Grid>
           <Grid>
-            <a className="phone" href="mailto:nilamindustries@gmail.com">nilamindustries@gmail.com</a>
+          <img className="icon" src={`${process.env.PUBLIC_URL}assets/images/web-icon.png`}/> <a className="phone" href="mailto:nilamindustries@gmail.com">nilamindustries@gmail.com</a>
           </Grid>
           <Grid>
             <a className="phone" href="http://www.nilamindustries.com/">http://www.nilamindustries.com/</a>
